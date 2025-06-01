@@ -1,7 +1,45 @@
 import React from 'react'
+import { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './LoginPage.css';
+import axiosInstance from '../../api/axiosInstance';
+import { useNavigate } from 'react-router-dom';
+
 function LoginPage() {
+    const [userName , setUserName] = useState("");
+    const [password , setPassword] = useState("");  
+    const navigate = useNavigate();
+
+    function clickLoginBtn(){
+        setUserName(document.getElementById('email').value);
+        setPassword(document.getElementById('password').value)
+        if(userName === "" || password ==="" ){
+            alert("Please enter user name and password both")
+        }
+        else{
+            console.log(userName,password)
+             handleSubmit();
+        }
+       
+    }
+    const handleSubmit = async () => {
+    
+    
+    try {
+      const response = await axiosInstance.post("https://dummyjson.com/auth/login", {
+        username: userName,
+        password: password,
+        expiresInMins: 30,
+        
+      });
+      console.log("Success:", response.data);
+     alert("Login API called successfully.");
+      navigate('/dashboard');
+    } catch (err) {
+      console.error("API Error:", err);
+      alert("Failed to call login API."+err);
+    }
+}
   return (
     <div>
 
@@ -25,16 +63,16 @@ function LoginPage() {
 
                 <Form.Group className="mb-4" controlId="form2Example18">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="email" size="lg" />
+                  <Form.Control type="email" size="lg" id='username' required  />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="form2Example28">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" size="lg" />
+                  <Form.Control type="password" size="lg" id='password' required />
                 </Form.Group>
 
                 <div className="pt-1 mb-4">
-                  <Button variant="info" size="lg" block type="button" style={{width:"100%"}}>
+                  <Button variant="info" size="lg" block type="button" style={{width:"100%"}} onClick={clickLoginBtn} >
                     Login
                   </Button>
                 </div>
