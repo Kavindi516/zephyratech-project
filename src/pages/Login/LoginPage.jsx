@@ -24,7 +24,7 @@ function LoginPage() {
                 </h3>
 
                 <Form.Group className="mb-4" controlId="form2Example18">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label>Username</Form.Label>
                   <Form.Control type="email" size="lg" />
                 </Form.Group>
 
