@@ -1,0 +1,11 @@
+/* .h-custom-2 {} */
+    /* Ensure this doesn't conflict with React Bootstrap's flex utilities if problems arise */
+
+/* If you were to use .bg-image-vertical on an element: */
+.bg-image-vertical {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+}
