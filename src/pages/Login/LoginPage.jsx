@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './LoginPage.css';
 import axiosInstance from '../../api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
+import loginBg from '../../assets/images/login-bg.jpg';
 
 function LoginPage() {
     const [userName , setUserName] = useState("");
@@ -102,11 +103,12 @@ function LoginPage() {
           </Col>
           <Col sm={6} className="px-0 d-none d-sm-block">
             <img
-               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp"
-               alt=""
-               className="w-100 vh-100"
-               style={{ objectFit: 'cover', objectPosition: 'left' }}
-            />
+  src={loginBg}
+  alt="Login Background"
+  className="w-100 vh-100"
+  style={{ objectFit: 'cover', objectPosition: 'left' }}
+/>
+            
           </Col>
         </Row>
       </Container>
