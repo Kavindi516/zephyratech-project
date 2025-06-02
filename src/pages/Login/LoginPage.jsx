@@ -10,21 +10,16 @@ function LoginPage() {
     const [password , setPassword] = useState("");  
     const navigate = useNavigate();
 
-    function clickLoginBtn(){
-        setUserName(document.getElementById('email').value);
-        setPassword(document.getElementById('password').value)
+    const clickLoginBtn = () => {
         if(userName === "" || password ==="" ){
-            alert("Please enter user name and password both")
+            alert("Please enter both your username and password to proceed.")
+            return;
         }
-        else{
-            console.log(userName,password)
-             handleSubmit();
-        }
+        handleSubmit();
+    };
        
-    }
-    const handleSubmit = async () => {
     
-    
+    const handleSubmit = async () => {       
     try {
       const response = await axiosInstance.post("https://dummyjson.com/auth/login", {
         username: userName,
@@ -33,7 +28,7 @@ function LoginPage() {
         
       });
       console.log("Success:", response.data);
-     alert("Login API called successfully.");
+      alert("Login API called successfully.");
       navigate('/dashboard');
     } catch (err) {
       console.error("API Error:", err);
@@ -42,33 +37,34 @@ function LoginPage() {
 }
   return (
     <div>
-
       <Container fluid>
         <Row>
           <Col sm={6} className="text-black">
             <Container>
                 <div className="px-5 ms-xl-4 m-2">
-              {/* If using react-fontawesome: /}
-              {/ <FontAwesomeIcon icon={faCrow} size="2x" className="me-3 pt-5 mt-xl-4" style={{ color: '
-#709085' }} /> */}
-              <i className="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style={{ color: '#709085' }}></i>
-              <span className="h1 fw-bold mb-0">Logo</span>
-            </div>
+                    <i className="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style={{ color: '#709085' }}></i>
+                    <span className="h1 fw-bold mb-0">Logo</span>
+                </div>
 
-            <div className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-              <Form style={{ width: '23rem' }}>
-                <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
-                  Log in
-                </h3>
+                <div className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                    <Form style={{ width: '23rem' }}>
+                        <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
+                        Log in
+                        </h3>
 
-                <Form.Group className="mb-4" controlId="form2Example18">
+                <Form.Group className="mb-4" >
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="email" size="lg" id='username' required  />
+                  <Form.Control type="text" size="lg" value={userName} onChange={(e) => setUserName(e.target.value)} required  />
                 </Form.Group>
 
-                <Form.Group className="mb-4" controlId="form2Example28">
+                <Form.Group className="mb-4">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" size="lg" id='password' required />
+                  <Form.Control 
+                    type="password"
+                    size="lg"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required />
                 </Form.Group>
 
                 <div className="pt-1 mb-4">
@@ -99,11 +95,9 @@ function LoginPage() {
                className="w-100 vh-100"
                style={{ objectFit: 'cover', objectPosition: 'left' }}
             />
-
           </Col>
         </Row>
       </Container>
-
     </div>
   )
 }
