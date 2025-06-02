@@ -1,11 +1,372 @@
-/* .h-custom-2 {} */
-    /* Ensure this doesn't conflict with React Bootstrap's flex utilities if problems arise */
+/* LoginPage.css - Complete Responsive Styles */
 
-/* If you were to use .bg-image-vertical on an element: */
-.bg-image-vertical {
-    position: relative;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: auto 100%;
+/* Main container adjustments */
+.login-container {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Left side form styling */
+.login-form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Brand section */
+.brand-section {
+  margin-bottom: 1.5rem;
+}
+
+.brand-icon {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #2d96db 0%, #4b74a2 100%);
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.brand-icon i {
+  color: white;
+  font-size: 1.3rem;
+}
+
+.brand-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #217fcc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Form container */
+.form-container {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+/* Form styling */
+.login-form {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 1rem;
+}
+
+/* Form inputs */
+.form-group {
+  margin-bottom: 1.3rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.7rem;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fafbfc;
+}
+
+.form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  background-color: #fff;
+  outline: none;
+}
+
+.form-control:hover {
+  border-color: #ced4da;
+}
+
+/* Login button */
+.login-button {
+  background: linear-gradient(135deg, #667eea 0%, #1499ce 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #467bc1 100%);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+/* Links */
+.forgot-password {
+  text-align: center;
+  margin: 1.2rem 0 1rem 0;
+}
+
+.forgot-password a {
+  color: #6c757d;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #667eea;
+  text-decoration: underline;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+.register-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #5a67d8;
+  text-decoration: underline;
+}
+
+/* Right side image */
+.image-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.login-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.image-section:hover .login-bg-image {
+  transform: scale(1.02);
+}
+
+/* Validation feedback */
+.invalid-feedback {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 991px) {
+  .login-form-section {
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+  
+  .form-container {
+    max-width: 500px;
+  }
+  
+  .login-form {
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    min-height: 100vh;
+  }
+  
+  .login-form-section {
+    min-height: 100vh;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+  
+  .login-form {
+    padding: 2.5rem 2rem;
+    /* padding: 2.5rem 2rem; */
+    margin: 1rem 0;
+    border-radius: 16px;
+  }
+  
+  .brand-section {
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  
+  .form-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-container {
+    max-width: 100%;
+  }
+  
+  .brand-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .brand-text {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-form-section {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  .login-form {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    margin: 0.5rem 0;
+  }
+  
+  .brand-text {
+    font-size: 1.6rem;
+  }
+  
+  .form-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .brand-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
+
+  .brand-icon i {
+    font-size: 1.1rem;
+  }
+  
+  .form-control {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .login-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .brand-section {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form-section {
+    padding: 0.5rem;
+  }
+  
+  .login-form {
+    padding: 1.5rem 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .brand-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-title {
+    font-size: 1.4rem;
+  }
+  
+  .brand-text {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .login-form {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .form-control {
+    padding: 0.7rem 0.9rem;
+  }
+  
+  .login-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+/* @media (max-width: 400px) {
+  .login-form {
+    padding: 1.5rem ;
+  }
+  
+  .form-control {
+    padding: 0.7rem 0.9rem;
+  }
+  
+  .login-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 7rem;
+  }
+} */
+
+/* Additional animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-form {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.brand-section {
+  animation: fadeIn 0.8s ease-out;
 }
