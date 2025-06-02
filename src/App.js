@@ -6,11 +6,9 @@ function App() {
   return (
     <div >
       <Router>
-  
-      <Routes>
+        <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard/>} /> 
-    
       </Routes>
     </Router>
     </div>
