@@ -8,33 +8,35 @@ import { useNavigate } from 'react-router-dom';
 function LoginPage() {
     const [userName , setUserName] = useState("");
     const [password , setPassword] = useState("");  
+    const [validated, setValidated] = useState(false);
     const navigate = useNavigate();
 
-    const clickLoginBtn = () => {
-        if(userName === "" || password ==="" ){
-            alert("Please enter both your username and password to proceed.")
-            return;
-        }
-        handleSubmit();
-    };
-       
-    
-    const handleSubmit = async () => {       
+    const handleSubmit = async (event) => {    
+        event.preventDefault();
+        const form = event.currentTarget;
+
+        if (!form.checkValidity()) {
+        event.stopPropagation();
+        setValidated(true);
+        return;
+     }   
+
+
     try {
       const response = await axiosInstance.post("https://dummyjson.com/auth/login", {
         username: userName,
         password: password,
         expiresInMins: 30,
-        
-      });
+     });
       console.log("Success:", response.data);
-      alert("Login API called successfully.");
+      alert("Login successful.");
       navigate('/dashboard');
     } catch (err) {
       console.error("API Error:", err);
-      alert("Failed to call login API."+err);
+      alert("Login failed. Please check your credentials.");
     }
-}
+};
+
   return (
     <div>
       <Container fluid>
@@ -47,17 +49,24 @@ function LoginPage() {
                 </div>
 
                 <div className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-                    <Form style={{ width: '23rem' }}>
+                    <Form 
+                      noValidate
+                      validated={validated}
+                      onSubmit={handleSubmit}
+                      style={{ width: '23rem' }}>
                         <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
                         Log in
                         </h3>
 
-                <Form.Group className="mb-4" >
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" size="lg" value={userName} onChange={(e) => setUserName(e.target.value)} required  />
-                </Form.Group>
+                    <Form.Group className="mb-4" controlId="username" >
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" size="lg" value={userName} onChange={(e) => setUserName(e.target.value)} required  />
+                        <Form.Control.Feedback type="invalid">
+                            Please enter your username.
+                        </Form.Control.Feedback>   
+                    </Form.Group>
 
-                <Form.Group className="mb-4">
+                <Form.Group className="mb-4" controlId="password" >
                   <Form.Label>Password</Form.Label>
                   <Form.Control 
                     type="password"
@@ -65,10 +74,13 @@ function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required />
+                    <Form.Control.Feedback type="invalid">
+                      Please enter your password.
+                    </Form.Control.Feedback>
                 </Form.Group>
 
                 <div className="pt-1 mb-4">
-                  <Button variant="info" size="lg" block type="button" style={{width:"100%"}} onClick={clickLoginBtn} >
+                  <Button variant="info" size="lg" block type="submit" style={{width:"100%"}} >
                     Login
                   </Button>
                 </div>
@@ -79,7 +91,7 @@ function LoginPage() {
                   </a>
                 </p>
                 <p>
-                  Don't have an account?{' '}
+                  Don't have an account?
                   <a href="#!" className="link-info">
                     Register here
                   </a>
